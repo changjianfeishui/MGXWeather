@@ -113,21 +113,31 @@ extension TemperatureRangeView {
         let tuple = viewModel as! (Double,Double)
         let temp_min = Int(tuple.0)
         let temp_max = Int(tuple.1)
+        var abs_temp_min = temp_min
+        var abs_temp_max = temp_max
+        if temp_min < 0 {
+            abs_temp_min = -temp_min
+        }
+        
+        if temp_max < 0 {
+            abs_temp_max = -temp_max
+        }
+        
+    
 
         minTemp.frame = CGRect(x: bounds.width * 0.5 - 30 - 15, y: bounds.height * 0.5 + 10, width: 30, height: 0)
         maxTemp.frame = CGRect(x: bounds.width * 0.5 + 15, y: bounds.height * 0.5 + 10, width: 30, height: 0)
-        
         
         minTempLabel.frame = CGRect(x: bounds.width * 0.5 - 30 - 15, y: bounds.height * 0.5 + 10 - 12 - 5, width: 30, height: 12)
         maxTempLabel.frame = CGRect(x: bounds.width * 0.5 + 15, y: bounds.height * 0.5 + 10 - 12 - 5, width: 30, height: 12)
         
         UIView.animate(withDuration: 2) {
-            self.minTemp.frame = CGRect(x: self.bounds.width * 0.5 - 45, y: self.bounds.height * 0.5 + 10 - CGFloat(temp_min), width: 30, height: CGFloat(temp_min))
+            self.minTemp.frame = CGRect(x: self.bounds.width * 0.5 - 45, y: self.bounds.height * 0.5 + 10 - CGFloat(abs_temp_min), width: 30, height: CGFloat(abs_temp_min))
             
-            self.maxTemp.frame = CGRect(x: self.bounds.width * 0.5 + 15, y: self.bounds.height * 0.5 + 10 - CGFloat(temp_max), width: 30, height: CGFloat(temp_max))
+            self.maxTemp.frame = CGRect(x: self.bounds.width * 0.5 + 15, y: self.bounds.height * 0.5 + 10 - CGFloat(abs_temp_max), width: 30, height: CGFloat(abs_temp_max))
             
-            self.minTempLabel.frame = CGRect(x: self.bounds.width * 0.5 - 30 - 15, y: self.bounds.height * 0.5 + 10 - 12 - 5 - CGFloat(temp_min), width: 30, height: 12)
-            self.maxTempLabel.frame = CGRect(x: self.bounds.width * 0.5 + 15, y: self.bounds.height * 0.5 + 10 - 12 - 5 - CGFloat(temp_max), width: 30, height: 12)
+            self.minTempLabel.frame = CGRect(x: self.bounds.width * 0.5 - 30 - 15, y: self.bounds.height * 0.5 + 10 - 12 - 5 - CGFloat(abs_temp_min), width: 30, height: 12)
+            self.maxTempLabel.frame = CGRect(x: self.bounds.width * 0.5 + 15, y: self.bounds.height * 0.5 + 10 - 12 - 5 - CGFloat(abs_temp_max), width: 30, height: 12)
         }
         
         minTempLabel.count(from: 0, to: temp_min, duration: 2)

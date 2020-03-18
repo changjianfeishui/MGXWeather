@@ -70,11 +70,12 @@ class ForecastCell: UITableViewCell {
     //WeatherIcon
     func setupWeatherIconLabel() ->  Void{
         weatherIconLabel.font = UIFont(name: "Weather&Time", size: 40)
+        weatherIconLabel.textAlignment = .center
         addSubview(weatherIconLabel)
     }
     func layoutWeatherIconLabel() -> Void {
         let w:CGFloat = 60
-        weatherIconLabel.frame = CGRect(x: maxTempLabel.frame.maxX + 20, y: 0, width: w, height: bounds.height)
+        weatherIconLabel.frame = CGRect(x: maxTempLabel.frame.maxX + 30, y: 0, width: w, height: bounds.height)
     }
     
     //WeatherDescription
